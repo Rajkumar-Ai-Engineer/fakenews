@@ -1,0 +1,17 @@
+phidata
+python-dotenv
+yfinance
+streamlit
+gradio
+duckduckgo-search
+fastapi
+uvicorn
+groq
+openai
+packaging
+pypdf
+sqlalchemy
+# pgvectorpsycopg[binary]
+langchain
+ChromaDb
+wikipedia
