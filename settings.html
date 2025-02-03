@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Styling for the three-dot menu */
+        .menu-container {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+
+        .menu-btn {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: black; /* Three-dot color */
+            padding: 10px;
+            border-radius: 50%; /* Makes it circular */
+            transition: background 0.3s;
+        }
+
+        .menu-btn:hover {
+            background: rgb(205, 203, 203); /* Light gray on hover */
+        }
+
+        .menu-dropdown {
+            display: none;
+            position: absolute;
+            right: 0;
+            background: rgb(18, 17, 17);
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            overflow: hidden;
+            min-width: 120px;
+        }
+
+        .menu-dropdown button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            border: none;
+            background: none;
+            text-align: left;
+            cursor: pointer;
+        }
+
+        .menu-dropdown button:hover {
+            background: #9a9999;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="menu-container">
+        <button class="menu-btn" onclick="toggleMenu()">⋮</button>
+        <div class="menu-dropdown" id="settingsMenu">
+            <button onclick="toggleTheme()">Switch Mode</button>
+            <button onclick="viewProfile()">Profile</button>
+            <button onclick="manageArticles()">Articles</button>
+            <button onclick="logout()">Logout</button>
+        </div>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            var menu = document.getElementById("settingsMenu");
+            menu.style.display = menu.style.display === "block" ? "none" : "block";
+        }
+
+        function toggleTheme() {
+            alert("Switching theme...");
+        }
+
+        function viewProfile() {
+            alert("Opening profile...");
+        }
+
+        function manageArticles() {
+            alert("Managing articles...");
+        }
+
+        function logout() {
+            alert("Logging out...");
+        }
+
+        // Close menu when clicking outside
+        document.addEventListener("click", function(event) {
+            var menu = document.getElementById("settingsMenu");
+            var button = document.querySelector(".menu-btn");
+            if (event.target !== menu && event.target !== button) {
+                menu.style.display = "none";
+            }
+        });
+    </script>
+
+</body>
+</html>

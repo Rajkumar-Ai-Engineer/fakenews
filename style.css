@@ -1,0 +1,80 @@
+/* 🌟 General Styling */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: white;
+    color: black;
+    transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+.container {
+    max-width: 400px;
+    margin: 50px auto;
+    text-align: center;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    transition: 0.3s ease-in-out;
+}
+
+.container:hover {
+    transform: scale(1.02);
+}
+
+/* 🌑 Dark Mode */
+.dark-mode {
+    background-color: #121212;
+    color: rgb(21, 21, 21);
+}
+
+/* 🖋 Text & Inputs */
+input, textarea {
+    width: 80%;
+    padding: 10px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 5px;
+    box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.1);
+    transition: 0.3s;
+}
+
+input:focus {
+    outline: none;
+    box-shadow: 0px 0px 8px rgba(255, 117, 140, 0.8);
+}
+
+/* 🎛 Buttons */
+button {
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    background: linear-gradient(90deg, #180366, #7e8dff);
+    color: white;
+    border-radius: 5px;
+    transition: background 0.3s, transform 0.2s;
+}
+
+button:hover {
+    background: linear-gradient(90deg, #5b49e6, #1d076c);
+    transform: scale(1.1);
+}
+
+/* 🌓 Dark Mode Button */
+.dark-mode button {
+    background-color: #444;
+}
+
+.dark-mode button:hover {
+    background-color: #666;
+}
+
+/* 🔻 Footer */
+footer {
+    text-align: center;
+    margin-top: 50px;
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+
+
