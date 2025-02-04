@@ -1,116 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fake News Detector</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        body {
-            margin: 0;
-            background-color: #ffffff;
-            overflow: hidden;
-            transition: background 0.3s, color 0.3s;
-        }
-        .dark-mode {
-            background-color: #121212;
-            color: white;
-        }
-        .splash {
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            opacity: 0.7;
-            transform: scale(1);
-            animation: splashAnim 0.5s ease-out, colorShift 1s infinite;
-        }
-        @keyframes splashAnim {
-            0% {
-                transform: scale(1);
-                opacity: 0.7;
-            }
-            100% {
-                transform: scale(4);
-                opacity: 0;
-            }
-        }
-        @keyframes colorShift {
-            0% { background-color: rgb(238, 96, 176); }
-            25% { background-color: blue; }
-            50% { background-color: green; }
-            75% { background-color: yellow; }
-            100% { background-color: rgb(77, 202, 240); }
-        }
-    </style>
+    <title>Login & Sign-up</title>
+    <link rel="stylesheet" href="style.css">   
 </head>
-<body class="bg-gray-100 dark:bg-gray-900 transition-all duration-500">
-    <nav class="bg-blue-600 dark:bg-blue-800 p-4 flex justify-between items-center shadow-lg">
-        <div class="text-white text-xl font-bold">Fake News Detector</div>
-        <ul class="flex space-x-4">
-            <li><a href="index.html" class="text-white hover:underline">Home</a></li>
-            <li><a href="login.html" class="text-white hover:underline">Login</a></li>
-            <li><a href="news.html" class="text-white hover:underline">News</a></li>
-            <li><a href="help.html" class="text-white hover:underline">Help</a></li>
-            <li><a href="settings.html" class="text-white hover:underline">Settings</a></li>
-        </ul>
-        <button id="darkModeToggle" class="bg-gray-800 text-white px-4 py-2 rounded">🌙</button>
-    </nav>
 
-    <div class="flex flex-col items-center mt-20 px-4">
-        <div class="w-full max-w-2xl relative">
-            <input type="text" id="newsInput" class="w-full p-4 pl-12 rounded shadow-lg border dark:bg-gray-800 dark:text-white" placeholder="Paste your news here...">
-            <span class="absolute left-4 top-5 text-gray-400">🔍</span>
+<body>
+
+    <div class="wrapper">
+        <div class="form-wrapper sign-up">
+            <form action="">
+                <h2>Sign Up</h2>
+                <div class="input-group">
+                    <input type="text" required>
+                    <label for="">Username</label>
+                </div>
+                <div class="input-group">
+                    <input type="email" required>
+                    <label for="">E-mail</label>
+                </div>
+                <div class="input-group">
+                    <input type="password" required>
+                    <label for="">Password</label>
+                </div>
+                <button type="submit" class="btn">Sign Up</button>
+                <div class="sign-link">
+                    <p>Already have an account? <a href="#" class="signIn-link">Login</a></p>
+                </div>
+            </form>
         </div>
-        <button onclick="detectNews()" class="mt-4 bg-blue-600 text-white px-6 py-2 rounded shadow hover:bg-blue-700 transition">Check News</button>
-        <div id="result" class="mt-6 p-4 text-lg font-semibold text-center w-full max-w-2xl bg-white dark:bg-gray-800 rounded shadow hidden"></div>
+
+        <div class="form-wrapper sign-in">
+            <form action="">
+                <h2>Login</h2>
+                <div class="input-group">
+                    <input type="text" required>
+                    <label for="">Username</label>
+                </div>
+                <div class="input-group">
+                    <input type="password" required>
+                    <label for="">Password</label>
+                </div>
+                <div class="forgot-pass">
+                    <a href="#">Forgot Password?</a>
+                </div>
+                <button type="submit" class="btn">Login</button>
+                <div class="sign-link">
+                    <p>Don't have an account? <a href="#" class="signUp-link">Sign Up</a></p>
+                </div>
+            </form>
+        </div>
     </div>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            if (localStorage.getItem("darkMode") === "enabled") {
-                document.body.classList.add("dark-mode");
-            }
-        });
-
-        document.getElementById('darkModeToggle').addEventListener('click', function () {
-            document.body.classList.toggle('dark-mode');
-            localStorage.setItem("darkMode", document.body.classList.contains("dark-mode") ? "enabled" : "disabled");
-        });
-
-        function detectNews() {
-            let newsText = document.getElementById('newsInput').value;
-            let resultBox = document.getElementById('result');
-            if (newsText.trim() === "") {
-                resultBox.innerText = "Please enter some news text.";
-                resultBox.classList.remove('hidden');
-                return;
-            }
-            let isFake = Math.random() < 0.5;
-            resultBox.innerText = isFake ? "❌ Fake News" : "✅ Real News";
-            resultBox.classList.remove('hidden');
-        }
-
-        document.addEventListener("mousemove", (e) => {
-            const splash = document.createElement("div");
-            splash.classList.add("splash");
-            document.body.appendChild(splash);
-            
-            splash.style.left = `${e.clientX - 10}px`;
-            splash.style.top = `${e.clientY - 10}px`;
-            
-            setTimeout(() => {
-                splash.remove();
-            }, 500);
-        });
-    </script>
-
-    <footer class="text-center mt-10 p-4 bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-gray-300">
-        <p>Designed by Hare Prasath A P, Diwakaran S, Rajkumar V, Kumaran K | &copy; 2025 All rights reserved.</p>
-    </footer>
-
-    <link rel="stylesheet" href="styles.css">
-    <script defer src="script.js"></script>
-
+    <script src="script.js"></script>
 </body>
+
 </html>
