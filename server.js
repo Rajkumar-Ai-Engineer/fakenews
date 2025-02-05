@@ -30,14 +30,14 @@ app.post("/signup", async (req, res) => {
     // Check if user already exists
     const existingUser = await User.findOne({ email });
     if (existingUser) {
-        return res.status(400).json({ message: "User already exists" });
+        return res.status(400).json({ message: "User already exists 💡" });
     }
 
     // Create new user
     const newUser = new User({ username, email, password });
     await newUser.save();
 
-    res.status(201).json({ message: "User registered successfully" });
+    res.status(201).json({ message: "User registered successfully 👍" });
 });
 
 // Login API (Redirects after login)
@@ -47,16 +47,16 @@ app.post("/login", async (req, res) => {
     // Find user by username
     const user = await User.findOne({ username });
     if (!user) {
-        return res.status(400).json({ message: "User not found" });
+        return res.status(400).json({ message: "User not found ❌" });
     }
 
     // Compare password directly
     if (password !== user.password) {
-        return res.status(400).json({ message: "Invalid credentials" });
+        return res.status(400).json({ message: "Invalid credentials 👎" });
     }
 
     // Redirect user to the dashboard (http://localhost:8501)
-    res.status(200).json({ message: "Login successful", redirectURL: "http://localhost:8501" });
+    res.status(200).json({ message: "Login successful✅ ", redirectURL: "http://localhost:8501" });
 });
 
 // Start the server

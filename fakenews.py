@@ -8,8 +8,8 @@ import base64
 def fake_news_predict(user_input):
     Fake_Agent = Agent(
         name='Fake_Agent',
-        # model=Groq(id="deepseek-r1-distill-llama-70b")
-        model =  OpenAIChat(id="gpt-4o"),
+        model=Groq(id="deepseek-r1-distill-llama-70b"),
+        # model =  OpenAIChat(id="gpt-4o"),
         instructions=[
             "You are a fake news detector.",
             "Always analyze multiple sources before deciding.",
@@ -92,7 +92,7 @@ if option == "Fake News Detection":
     st.title("Fake News Detection")
     user_input = st.text_input("Enter news text:")
     if st.button("Detect"):
-        with st.spinner("Analyzing..."):
+        with st.spinner("Analyzing...🕵️"):
             result = fake_news_predict(user_input)
         st.markdown(f"### Result: {result.content}")
    
@@ -101,9 +101,23 @@ elif option == "Real News Search":
     st.title("Real News Search")
     user_input = st.text_input("Enter topic:")
     if st.button("Search"):
-        with st.spinner("Fetching latest news..."):
+        with st.spinner("Fetching latest news...🔍"):
             result = news_search(user_input)
         st.markdown(f"### Search Result: {result.content}")
         # st.text_area("News Results:", result, height=300)
 
 
+
+
+
+
+
+
+
+    
+    
+
+if st.sidebar.button("Logout"):
+    st.markdown('<meta http-equiv="refresh" content="0;URL=http://127.0.0.1:5500/index.html">', unsafe_allow_html=True)
+    
+    
