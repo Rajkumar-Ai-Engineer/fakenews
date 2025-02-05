@@ -1,12 +1,15 @@
 import streamlit as st
 from phi.agent import Agent
 from phi.tools.duckduckgo import DuckDuckGo
+from phi.model.openai import OpenAIChat
 from phi.model.groq import Groq
+import base64
 
 def fake_news_predict(user_input):
     Fake_Agent = Agent(
         name='Fake_Agent',
-        model=Groq(id="deepseek-r1-distill-llama-70b"),
+        # model=Groq(id="deepseek-r1-distill-llama-70b")
+        model =  OpenAIChat(id="gpt-4o"),
         instructions=[
             "You are a fake news detector.",
             "Always analyze multiple sources before deciding.",
@@ -39,16 +42,46 @@ def news_search(user_input):
 
 # Streamlit UI Setup
 st.set_page_config(page_title="News Verification", layout="wide")
-st.markdown("""
-    <style>
-        .stApp {
-            background-image: url('https://www.bing.com/images/search?view=detailV2&ccid=xoyACR5J&id=08C2ED5688D0F5516DFD13C4F7127B714F9C0A6A&thid=OIP.xoyACR5JwHTCsaKpW8JeUgHaEJ&mediaurl=https%3A%2F%2Fimg.freepik.com%2Fpremium-photo%2Fhigh-quality-desktop-wallpaper_941097-71081.jpg&exph=351&expw=626&q=neon+spreading+4k+wallpapers+for+pc&simid=607995747528606835&form=IRPRST&ck=988E1085529E355A7C7D0862170A8424&selectedindex=8&itb=0&cw=1334&ch=708&ajaxhist=0&ajaxserp=0&cit=ccid_%2BKbMWVXp*cp_FA28F4201124450B53730581EEB0F993*mid_494C9473CD727A31B81F6543F15C7B405611BB07*simid_607988763924779735*thid_OIP.-KbMWVXpXorogwXmf8KRPwHaEo&vt=2&sim=11'); 
+def set_background(image_path):
+    with open(image_path, "rb") as image_file:
+        encoded_string = base64.b64encode(image_file.read()).decode()
+
+    st.markdown(
+        f"""
+        <style>
+        .stApp {{
+            background-image: url("data:image/png;base64,{encoded_string}");
             background-size: cover;
-        }
-    </style>
+        }}
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
+    
+
+# Example usage
+set_background("background.png") 
+
+def set_sidebar_bg(image_path):
+    with open(image_path, "rb") as image_file:
+        encoded_string = base64.b64encode(image_file.read()).decode()
+
+    st.markdown(
+        f"""
+        <style>
+        [data-testid="stSidebar"] {{
+            background-image: url("data:image/png;base64,{encoded_string}");
+            background-size: cover;
+        }}
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
     
     
-""", unsafe_allow_html=True)
+set_sidebar_bg("back.png")
+    
+
 
 
 
