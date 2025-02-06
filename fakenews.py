@@ -14,7 +14,8 @@ def fake_news_predict(user_input):
             "You are a fake news detector.",
             "Always analyze multiple sources before deciding.",
             "Provide sources for transparency.",
-            "Respond only with 'FAKE' or 'REAL' followed by a brief explanation.",
+            "Respond only with 'FAKE' or 'REAL' followed by a brief explanation."
+            "Dont access private information based on the government policy",
         ],
         tools=[DuckDuckGo()],
         markdown=True,
@@ -33,6 +34,7 @@ def news_search(user_input):
             "Always perform a comprehensive search across various sources before providing an answer.",
             "Include the source URLs in your responses to ensure transparency and credibility.",
             "Continuously collect and update news in real time.",
+            "Dont access private information based on the government policy"
         ],
         show_tool_calls=False,
         markdown=True,
@@ -41,7 +43,7 @@ def news_search(user_input):
     return response
 
 # Streamlit UI Setup
-st.set_page_config(page_title="News Verification", layout="wide")
+st.set_page_config(page_title="News Verification 📰", layout="wide")
 def set_background(image_path):
     with open(image_path, "rb") as image_file:
         encoded_string = base64.b64encode(image_file.read()).decode()
@@ -60,7 +62,7 @@ def set_background(image_path):
     
 
 # Example usage
-set_background("background.png") 
+set_background("1.png") 
 
 def set_sidebar_bg(image_path):
     with open(image_path, "rb") as image_file:
@@ -104,7 +106,7 @@ elif option == "Real News Search":
         with st.spinner("Fetching latest news...🔍"):
             result = news_search(user_input)
         st.markdown(f"### Search Result: {result.content}")
-        # st.text_area("News Results:", result, height=300)
+        
 
 
 
